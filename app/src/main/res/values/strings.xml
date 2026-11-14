@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">WireGuard Trigger</string>
+
+    <!-- Status -->
+    <string name="tunnel_on">Tunnel on</string>
+    <string name="tunnel_off">Tunnel off</string>
+    <string name="place_checking">Checking networks…</string>
+    <string name="place_trusted">Trusted network</string>
+    <string name="place_untrusted">Untrusted network</string>
+    <string name="place_offline">Tunnel stays as it is</string>
+    <string name="auto_switch">Switch automatically</string>
+    <string name="auto_switch_summary">Turns %1$s on away from trusted Wi-Fi</string>
+    <string name="auto_switch_needs_setup">Finish the setup below first</string>
+    <string name="auto_switch_needs_tunnel">Enter the tunnel name first</string>
+
+    <!-- Networks -->
+    <string name="net_none">No connection</string>
+    <string name="net_wifi_named">Wi-Fi %1$s</string>
+    <string name="net_wifi_hidden">Wi-Fi (name hidden)</string>
+    <string name="net_ethernet">Ethernet</string>
+    <string name="net_mobile">Mobile data</string>
+    <string name="net_other">Other network</string>
+
+    <!-- Setup -->
+    <string name="section_setup">Setup</string>
+    <string name="setup_recommended">Recommended. %1$s</string>
+    <string name="setup_install">Install WireGuard</string>
+    <string name="setup_install_summary">The official WireGuard app runs the tunnel. This app only switches it.</string>
+    <string name="setup_control">Allow tunnel control</string>
+    <string name="setup_control_summary">Lets this app turn WireGuard tunnels on and off.</string>
+    <string name="setup_wireguard_battery">Don’t restrict WireGuard’s battery use</string>
+    <string name="setup_wireguard_battery_summary">Otherwise Android stops WireGuard from turning the tunnel on in the background. In App info, open Battery and choose Unrestricted.</string>
+    <string name="setup_location">Allow precise location</string>
+    <string name="setup_location_summary">Android only tells apps the Wi-Fi name if they have it. The app never looks up where you are.</string>
+    <string name="setup_background">Allow location all the time</string>
+    <string name="setup_background_summary">So the Wi-Fi name can be read while the app is closed.</string>
+    <string name="setup_location_on">Turn on location</string>
+    <string name="setup_location_on_summary">Android hides Wi-Fi names while location is off.</string>
+    <string name="setup_remote">Allow remote control in WireGuard</string>
+    <string name="setup_remote_summary">In WireGuard, open Settings and turn on “Allow remote control apps”. Then test it.</string>
+    <string name="setup_remote_needs_tunnel">In WireGuard, open Settings and turn on “Allow remote control apps”. Enter the tunnel name to test it.</string>
+    <string name="setup_remote_failed">WireGuard didn’t react. Check the setting and that the tunnel name matches exactly.</string>
+    <string name="setup_battery">Don’t restrict battery use</string>
+    <string name="setup_battery_summary">Keeps switching reliable when the system puts unused apps to sleep.</string>
+
+    <!-- Trusted networks -->
+    <string name="section_trusted">Trusted Wi-Fi networks</string>
+    <string name="add_network">Add %1$s</string>
+    <string name="connected_now">Connected now</string>
+    <string name="remove_network">Remove %1$s</string>
+    <string name="add_manually">Add network</string>
+    <string name="network_name_label">Wi-Fi name (SSID)</string>
+    <string name="trusted_empty">No trusted networks yet, so the tunnel stays on everywhere.</string>
+
+    <!-- Tunnel -->
+    <string name="section_tunnel">Tunnel</string>
+    <string name="tunnel_name_unset">No tunnel set</string>
+    <string name="tunnel_name_summary">Exactly as named in the WireGuard app</string>
+    <string name="tunnel_name_edit">Change tunnel name</string>
+    <string name="tunnel_name_dialog">Tunnel name</string>
+    <string name="tunnel_name_label">Name</string>
+    <string name="off_on_trusted">Turn off on trusted Wi-Fi</string>
+    <string name="off_on_trusted_summary">If this is off, the app only ever turns the tunnel on.</string>
+    <string name="open_wireguard">Open WireGuard</string>
+
+    <!-- Activity -->
+    <string name="section_activity">Activity</string>
+    <string name="activity_empty">Nothing switched yet</string>
+    <string name="activity_on">Tunnel turned on</string>
+    <string name="activity_off">Tunnel turned off</string>
+    <string name="activity_no_response">WireGuard didn’t react</string>
+    <string name="activity_wireguard_missing">WireGuard isn’t installed</string>
+    <string name="activity_permission_missing">Tunnel control isn’t allowed</string>
+
+    <!-- Notification -->
+    <string name="notification_channel">Background service</string>
+    <string name="notification_channel_description">Required by Android while the app watches networks. Hidden unless you allow notifications.</string>
+    <string name="notification_text">Switching WireGuard automatically</string>
+
+    <!-- Actions -->
+    <string name="action_install">Install</string>
+    <string name="action_allow">Allow</string>
+    <string name="action_turn_on">Turn on</string>
+    <string name="action_open">Open</string>
+    <string name="action_test">Test</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_add">Add</string>
+</resources>
