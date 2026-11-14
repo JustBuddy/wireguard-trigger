@@ -67,10 +67,25 @@ fun AppRoot() {
     val activity by store.activity.collectAsStateWithLifecycle()
     val confirmed by store.remoteControlConfirmed.collectAsStateWithLifecycle()
 
+    val scope = rememberCoroutineScope()
+    var testState by remember { mutableStateOf(TestState.Idle) }
+    var dialog by rememberSaveable { mutableStateOf(Dialog.None) }
+    // Set when the remote-control step sends the user to WireGuard: test on the way back.
+    var testOnReturn by rememberSaveable { mutableStateOf(false) }
+
+    val onTest: () -> Unit = {
+        testState = TestState.Running
+        scope.launch { testState = if (app.testRemoteControl()) TestState.Idle else TestState.Failed }
+    }
+
     // Permissions and system switches change in other screens: re-check on every return.
     var resumes by remember { mutableIntStateOf(0) }
     LifecycleResumeEffect(Unit) {
         resumes++
+        if (testOnReturn) {
+            testOnReturn = false
+            if (testState != TestState.Running) onTest()
+        }
         onPauseOrDispose { }
     }
     val setup = remember(resumes, confirmed) { SetupState.read(context, confirmed) }
@@ -82,20 +97,20 @@ fun AppRoot() {
 
     val decision = Rules.decide(net, config)
     val actions = rememberSetupActions()
-    val scope = rememberCoroutineScope()
-    var testState by remember { mutableStateOf(TestState.Idle) }
-    var dialog by rememberSaveable { mutableStateOf(Dialog.None) }
-
-    val onTest: () -> Unit = {
-        testState = TestState.Running
-        scope.launch { testState = if (app.testRemoteControl()) TestState.Idle else TestState.Failed }
-    }
 
     fun LazyListScope.status() = item(key = "status") {
         StatusCard(net, decision, config, setup, store::setEnabled, Modifier.padding(horizontal = CardMargin))
     }
     fun LazyListScope.setupSteps() = item(key = "setup") {
-        SetupSection(setup, config, actions, testState, onTest, Modifier.padding(horizontal = CardMargin))
+        SetupSection(
+            setup, config, actions, testState, onTest,
+            onEnterTunnel = { dialog = Dialog.TunnelName },
+            onOpenRemoteControl = {
+                testOnReturn = true
+                WireGuard.open(context)
+            },
+            modifier = Modifier.padding(horizontal = CardMargin),
+        )
     }
     fun LazyListScope.networks() = item(key = "networks") {
         NetworksSection(

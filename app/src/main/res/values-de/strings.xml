@@ -35,9 +35,10 @@
     <string name="setup_background_summary">Damit der WLAN-Name auch bei geschlossener App lesbar ist.</string>
     <string name="setup_location_on">Standort einschalten</string>
     <string name="setup_location_on_summary">Android verbirgt WLAN-Namen, solange der Standort aus ist.</string>
+    <string name="setup_tunnel">Tunnelnamen eingeben</string>
     <string name="setup_remote">Fernsteuerung in WireGuard erlauben</string>
-    <string name="setup_remote_summary">Schalte in den WireGuard-Einstellungen die Fernsteuerung durch andere Apps ein. Teste es dann.</string>
-    <string name="setup_remote_needs_tunnel">Schalte in den WireGuard-Einstellungen die Fernsteuerung durch andere Apps ein. Gib zum Testen den Tunnelnamen ein.</string>
+    <string name="setup_remote_summary">Öffne in WireGuard Einstellungen › Erweitert und schalte „Erlaube Steuerung über externe Apps“ ein. Die App prüft es, wenn du zurückkommst.</string>
+    <string name="setup_remote_checking">Wird geprüft… Der Tunnel wird dabei einmal ein- und ausgeschaltet.</string>
     <string name="setup_remote_failed">WireGuard hat nicht reagiert. Prüfe die Einstellung und ob der Tunnelname genau stimmt.</string>
     <string name="setup_battery">Akkunutzung nicht einschränken</string>
     <string name="setup_battery_summary">Hält das Schalten zuverlässig, wenn das System ungenutzte Apps in den Standby versetzt.</string>
@@ -80,6 +81,7 @@
     <string name="action_install">Installieren</string>
     <string name="action_allow">Erlauben</string>
     <string name="action_turn_on">Einschalten</string>
+    <string name="action_enter">Eingeben</string>
     <string name="action_open">Öffnen</string>
     <string name="action_test">Testen</string>
     <string name="action_clear">Löschen</string>

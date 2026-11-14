@@ -37,9 +37,10 @@
     <string name="setup_background_summary">So the Wi-Fi name can be read while the app is closed.</string>
     <string name="setup_location_on">Turn on location</string>
     <string name="setup_location_on_summary">Android hides Wi-Fi names while location is off.</string>
+    <string name="setup_tunnel">Enter the tunnel name</string>
     <string name="setup_remote">Allow remote control in WireGuard</string>
-    <string name="setup_remote_summary">In WireGuard, open Settings and turn on “Allow remote control apps”. Then test it.</string>
-    <string name="setup_remote_needs_tunnel">In WireGuard, open Settings and turn on “Allow remote control apps”. Enter the tunnel name to test it.</string>
+    <string name="setup_remote_summary">In WireGuard, open Settings › Advanced and turn on “Allow remote control apps”. The app checks it when you come back.</string>
+    <string name="setup_remote_checking">Checking… The tunnel switches on and off once.</string>
     <string name="setup_remote_failed">WireGuard didn’t react. Check the setting and that the tunnel name matches exactly.</string>
     <string name="setup_battery">Don’t restrict battery use</string>
     <string name="setup_battery_summary">Keeps switching reliable when the system puts unused apps to sleep.</string>
@@ -82,6 +83,7 @@
     <string name="action_install">Install</string>
     <string name="action_allow">Allow</string>
     <string name="action_turn_on">Turn on</string>
+    <string name="action_enter">Enter</string>
     <string name="action_open">Open</string>
     <string name="action_test">Test</string>
     <string name="action_clear">Clear</string>

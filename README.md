@@ -25,7 +25,7 @@ WireGuard Trigger watches which network your phone is on. On a Wi-Fi network you
   - With no connection at all, nothing changes.
 - **Leaves manual switching alone.** A command is only sent when the network changes what the tunnel should be. If you switch the tunnel by hand, the app leaves it that way until you move to another kind of network.
 - **Rides out hand-overs.** Changes have to hold for two seconds before the app acts, so roaming between access points or the gap before mobile data takes over doesn't toggle the tunnel.
-- **Guided setup.** Every permission and setting the app needs is a step with a button that opens the right screen. A step disappears once it's done. A built-in test checks that WireGuard accepts commands.
+- **Guided setup.** Every permission and setting the app needs is a step with a button that opens the right screen. A step disappears once it's done. WireGuard's remote-control setting can't be read, so the app checks it by switching the tunnel once when you come back from WireGuard.
 - **Activity list.** Shows when the tunnel was switched and on which network, and records when WireGuard didn't react.
 - **Made for foldables.** The cover screen shows one column. Unfolded, the status and tunnel settings sit on one side of the hinge, and the networks and activity on the other.
 - **Light and dark, English and German.**
@@ -46,8 +46,9 @@ WireGuard Trigger watches which network your phone is on. On a Wi-Fi network you
    - Allow tunnel control.
    - In WireGuard's App info, open *Battery* and choose *Unrestricted*. Android blocks background apps from starting services. Without this, WireGuard receives the command to turn the tunnel on but can't start its VPN.
    - Allow location *all the time* and keep location turned on. Android only tells apps the Wi-Fi name with this permission. The app never asks where you are.
-   - In WireGuard's settings, turn on *Allow remote control apps*. Then tap *Test*.
-4. Enter the tunnel name exactly as it appears in WireGuard, add your home Wi-Fi as a trusted network and turn on *Switch automatically*.
+   - Enter the tunnel name exactly as it appears in WireGuard.
+   - In WireGuard, open *Settings › Advanced* and turn on *Allow remote control apps*. When you come back, the app checks it by switching the tunnel on and off once.
+4. Add your home Wi-Fi as a trusted network and turn on *Switch automatically*.
 
 > [!TIP]
 > Also set WireGuard Trigger's own battery use to *Unrestricted* (the app suggests it). One UI puts apps it thinks are unused to sleep.

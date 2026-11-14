@@ -139,6 +139,8 @@ fun SetupSection(
     actions: SetupActions,
     testState: TestState,
     onTest: () -> Unit,
+    onEnterTunnel: () -> Unit,
+    onOpenRemoteControl: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val colors = OneUi.colors
@@ -159,27 +161,30 @@ fun SetupSection(
         if (!setup.locationOn) {
             add { SetupRow(Icons.Rounded.LocationOn, R.string.setup_location_on, R.string.setup_location_on_summary, R.string.action_turn_on, actions.turnOnLocation) }
         }
-        if (setup.wireGuardInstalled && setup.controlPermission && !setup.remoteControlConfirmed) {
+        if (config.tunnel.isEmpty()) {
+            add { SetupRow(Icons.Rounded.VpnKey, R.string.setup_tunnel, R.string.tunnel_name_summary, R.string.action_enter, onEnterTunnel) }
+        }
+        // WireGuard's setting can't be read, only tested by switching the tunnel once, which
+        // needs a tunnel name. The test runs by itself when the user returns from WireGuard.
+        if (setup.wireGuardInstalled && setup.controlPermission && config.tunnel.isNotEmpty() && !setup.remoteControlConfirmed) {
             add {
                 ListRow(
                     title = stringResource(R.string.setup_remote),
                     icon = Icons.Rounded.SettingsRemote,
                     iconTint = colors.warn,
-                    subtitle = when {
-                        config.tunnel.isEmpty() -> stringResource(R.string.setup_remote_needs_tunnel)
-                        testState == TestState.Failed -> stringResource(R.string.setup_remote_failed)
-                        else -> stringResource(R.string.setup_remote_summary)
+                    subtitle = when (testState) {
+                        TestState.Running -> stringResource(R.string.setup_remote_checking)
+                        TestState.Failed -> stringResource(R.string.setup_remote_failed)
+                        TestState.Idle -> stringResource(R.string.setup_remote_summary)
                     },
                     subtitleColor = if (testState == TestState.Failed) colors.danger else colors.textSecondary,
                 ) {
                     Column(horizontalAlignment = Alignment.End, verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        PillButton(stringResource(R.string.action_open), actions.openWireGuard, filled = false)
-                        if (config.tunnel.isNotEmpty()) {
-                            Box(contentAlignment = Alignment.Center) {
-                                PillButton(stringResource(R.string.action_test), { if (testState != TestState.Running) onTest() })
-                                if (testState == TestState.Running) {
-                                    CircularProgressIndicator(Modifier.size(20.dp), color = colors.onAccent, strokeWidth = 2.dp)
-                                }
+                        PillButton(stringResource(R.string.action_open), onOpenRemoteControl)
+                        Box(contentAlignment = Alignment.Center) {
+                            PillButton(stringResource(R.string.action_test), { if (testState != TestState.Running) onTest() }, filled = false)
+                            if (testState == TestState.Running) {
+                                CircularProgressIndicator(Modifier.size(20.dp), color = colors.textPrimary, strokeWidth = 2.dp)
                             }
                         }
                     }

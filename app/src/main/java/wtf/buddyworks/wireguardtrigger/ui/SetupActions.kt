@@ -13,7 +13,6 @@ import wtf.buddyworks.wireguardtrigger.wg.WireGuard
 /** What each setup step's button does. */
 class SetupActions(
     val installWireGuard: () -> Unit,
-    val openWireGuard: () -> Unit,
     val allowControl: () -> Unit,
     val unrestrictWireGuard: () -> Unit,
     val allowPreciseLocation: () -> Unit,
@@ -39,7 +38,6 @@ fun rememberSetupActions(): SetupActions {
 
     return SetupActions(
         installWireGuard = { WireGuard.openStorePage(context) },
-        openWireGuard = { WireGuard.open(context) },
         allowControl = { permissions.launch(arrayOf(WireGuard.PERMISSION_CONTROL_TUNNELS)) },
         // Android only offers the one-tap exemption dialog for the calling app itself.
         unrestrictWireGuard = { SystemScreens.appDetails(context, WireGuard.PACKAGE) },
